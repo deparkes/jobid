@@ -11,7 +11,8 @@ jobid.py
 
 which returns the JOBID number, and prints the JOBID plus the hostname of the computer you're running on.
 
-A record of all the JOBID numbers is kept in the file jobid.log.
+A record of all the JOBID numbers is kept in the file jobid.log. The log also includes a time stamp for the time you
+ran the job.
 
 It's also possible to add an optional comment which is included in the log file.
 
