@@ -43,7 +43,7 @@ def main(argv):
     if os.stat(jobid_log).st_size == 0:
         with open(jobid_log,"ab+") as f:
             writer = csv.writer(f)
-            writer.writerow(["JOBID", "time", "hostname", "comment"])
+            writer.writerow(["JOBID", "time","comment"])
 
 
 
@@ -54,7 +54,8 @@ def main(argv):
     # Increment to get next JOBID
     try:
         oldid = rows[-1][0] 
-        JOBID = int(oldid) + 1
+        (number, hostname) = oldid.split('.')        
+        JOBID = int(number) + 1
     except:
         JOBID = 0
     
@@ -63,10 +64,15 @@ def main(argv):
         comment = sys.argv[1]
     except:
         comment = "-"
+    # Including the hostname in the JOBID makes it easier 
+    # to find files later e.g. search for '1234.hostname',
+    # rather than '1234', which there may well be many of
+    JOBID = str(JOBID) + '.' + hostname    
     
     with open(jobid_log,"ab+") as f:
         writer = csv.writer(f)
-        writer.writerow([JOBID, time_stamp, hostname, comment])
+        writer.writerow([JOBID, time_stamp, comment])
+    
     
     print JOBID
     return JOBID
