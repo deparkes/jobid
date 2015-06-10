@@ -23,11 +23,13 @@ import sys
 import csv
 import os
 import socket
+from datetime import datetime
 
 def main(argv):
 
     jobid_log = os.path.dirname(os.path.realpath(sys.argv[0])) + "\jobid.log"
     hostname = socket.gethostname()
+    time_stamp = datetime.now().strftime("%Y-%m-%d %H:%M")
     # Open file in binary mode for reading and writing
     # Binary mode makes sure the csv writes do not add
     # in loads of empty lines.
@@ -41,7 +43,7 @@ def main(argv):
     if os.stat(jobid_log).st_size == 0:
         with open(jobid_log,"ab+") as f:
             writer = csv.writer(f)
-            writer.writerow(["JOBID", "hostname", "comment"])
+            writer.writerow(["JOBID", "time", "hostname", "comment"])
 
 
 
@@ -64,9 +66,9 @@ def main(argv):
     
     with open(jobid_log,"ab+") as f:
         writer = csv.writer(f)
-        writer.writerow([JOBID, hostname, comment])
+        writer.writerow([JOBID, time_stamp, hostname, comment])
     
-    print str(JOBID) + "." + hostname
+    print JOBID
     return JOBID
 
 if __name__ == "__main__":
