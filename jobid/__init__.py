@@ -26,7 +26,9 @@ import socket
 from datetime import datetime
 
 def main(argv):
-
+    jobid(argv)
+    
+def jobid(argv):
     jobid_log = os.path.dirname(os.path.realpath(sys.argv[0])) + "\jobid.log"
     hostname = socket.gethostname()
     time_stamp = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -45,12 +47,6 @@ def main(argv):
             writer = csv.writer(f)
             writer.writerow(["JOBID", "time","comment"])
 
-
-
-    
-
-
-    
     # Increment to get next JOBID
     try:
         oldid = rows[-1][0] 
