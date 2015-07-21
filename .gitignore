@@ -44,3 +44,8 @@ Temporary Items
 
 jobid.log
 *.log
+
+Package files
+*.zip
+*.egg*
+*.pyc
