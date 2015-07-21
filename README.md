@@ -12,17 +12,25 @@ The idea is that you call this script from another script or program to get a un
 The basic usage is:
 
     import jobid
-    jobid.jobid("dummy")
-
-The number "dummy" in the argument is required, but doesn't do anything other than prevent an error. Future versions will use this argument to record a comment in the log file.
+    jobid.jobid()
 
 which returns the JOBID number, and prints the JOBID plus the hostname of the computer you're running on.
+
+The default output of the log file 'jobid.log' is 
 
 A record of all the JOBID numbers is kept in the file jobid.log. The log also includes a time stamp for the time you
 ran the job.
 
-## To Do
+## Change Log
+0.2.1
 - Allow comments in output file
 - Specify logfile output directory
-- Save preferences in a config file
 
+## To Do
+- Change __init__.py to blank file
+- Save preferences in a config file
+- implement argparser thing for commandline arguments
+- possible options
+    o JOBID only
+    o JOBID.hostname
+    o print details of an old job
